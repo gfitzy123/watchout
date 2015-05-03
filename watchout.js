@@ -10,18 +10,19 @@ var gameOptions = {
 var numberOfenemies = gameOptions.enemies
 
 // Create a difficulty level that affects the speed of enemies moving on board
-var userInput = prompt("Please choose Easy, Medium, or Hard.")
 
-var difficultyLevel = function() {
-	var interval = 0
-	if (userInput.toUpperCase() === 'EASY') {
-			interval = 2500
-	}	else if (userInput.toUpperCase() === 'MEDIUM') {
-				interval = 1200
- 		}	else if (userInput.toUpperCase() === 'HARD') {
-					interval = 500
- 				}		return interval
-}
+// var userInput = prompt("Please choose Easy, Medium, or Hard.")
+
+// var difficultyLevel = function() {
+// 	var interval = 0
+// 	if (userInput.toUpperCase() === 'EASY') {
+// 			interval = 2500
+// 	}	else if (userInput.toUpperCase() === 'MEDIUM') {
+// 				interval = 1200
+//  		}	else if (userInput.toUpperCase() === 'HARD') {
+// 					interval = 500
+//  				}		return interval
+// }
 
 
 //Create SVG board, called gameBoard
@@ -80,11 +81,33 @@ var moveEnemies = function (interval) {
   setInterval(function() { changeEnemyPositions() }, interval);
 }
 
-moveEnemies(difficultyLevel());
 
 
 
+moveEnemies(1000);
+
+// Make a dot that represents the player
+
+var drag = d3.behavior.drag()  
+             .on('dragstart', function() { player.style('fill', 'purple'); })
+             .on('drag', function() { player.attr('cx', d3.event.x)
+                                            .attr('cy', d3.event.y); })
+             .on('dragend', function() { player.style('fill', 'black'); });
 
 
 
+var player = svg.selectAll('player')
+.data(["player"])
+.enter().append('circle')
+.attr("cx", 250)
+.attr("cy", 250)
+.attr("r", 50)
+.attr("fill", "black")
+.call(drag);
 
+
+// Make that dot draggable
+
+//Detect when enemy touches you
+
+// Keep track of score and reset when enemy touches you
