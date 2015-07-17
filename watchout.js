@@ -1,5 +1,4 @@
-// start slingin' some d3 here.
-/* START SOLUTION */
+
 var w = window.innerWidth;
 var h = window.innerHeight;
 var vis = d3.select('body').append('div')
@@ -16,7 +15,6 @@ var mouse = { x: w, y: h };
 var rand = function(n){ return Math.random() * n; };
 var url = 'http://www.youtube.com/embed/tquaim7OMaQ?'
   + 'autoplay=1&controls=0&showinfo=0&start=8&modestbranding=0'
-
 
 var astroids = vis.selectAll('div').data(d3.range(n))
       .enter().append('div').attr('class', 'astroid')
@@ -93,4 +91,3 @@ var detectCollisions = function(){
 };
 
 d3.timer(detectCollisions);
-/* END SOLUTION */
